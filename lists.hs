@@ -1,16 +1,16 @@
-some n = [1..n]
-
+double :: Int -> Int
 double n = n * 2
 
+squared :: Int -> Int
 squared n = n * n
 
-doubleList list = 
-    if length list == 0 then Nothing
-    else Just (map double list)
+doubleList :: [Int] -> Maybe [Int]
+doubleList [] = Nothing
+doubleList list = Just (map double list)
 
-squareList list =
-    if length list == 0 then Nothing
-    else Just (map squared list)
+squareList :: [Int] -> Maybe [Int]
+squareList [] = Nothing
+squareList list = Just (map squared list)
 
 isRoot :: Int -> Int -> Bool
 isRoot value target = squared value == target
@@ -25,3 +25,16 @@ root :: Int -> Maybe Int
 root n
     | n <= 1 = Nothing
     | otherwise = find (\x -> isRoot x n) [2..n `div` 2]
+
+isDivisor :: Int -> Int -> Bool
+isDivisor x y = x `mod` y == 0
+
+divisors :: Int -> [Int]
+divisors x = filter (isDivisor x) [1..x `div` 2]
+
+isPerfect :: Int -> Bool
+isPerfect x
+    | sum (divisors x) == x = True
+    | otherwise = False
+
+perfectNumbers n = filter isPerfect [1..n]
