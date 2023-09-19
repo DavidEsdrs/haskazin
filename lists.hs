@@ -33,8 +33,12 @@ divisors :: Int -> [Int]
 divisors x = filter (isDivisor x) [1..x `div` 2]
 
 isPerfect :: Int -> Bool
-isPerfect x
-    | sum (divisors x) == x = True
-    | otherwise = False
+isPerfect x = sum (divisors x) == x
 
 perfectNumbers n = filter isPerfect [1..n]
+
+-- soma itens equivalentes em duas listas
+sum' :: [Int] -> [Int] -> [Int]
+sum' [] _ = []
+sum' _ [] = []
+sum' (h1:t1) (h2:t2) = h1 + h2 : sum' t1 t2
