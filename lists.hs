@@ -70,5 +70,6 @@ evaluate str = equals h l : evaluate c
         l = last str
         c = center str
 
+-- solução idiota para avaliar se uma string é palíndroma
 isPalindrome :: String -> Bool
 isPalindrome str = all (==True) (evaluate str)
