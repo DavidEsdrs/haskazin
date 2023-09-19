@@ -42,3 +42,33 @@ sum' :: [Int] -> [Int] -> [Int]
 sum' [] _ = []
 sum' _ [] = []
 sum' (h1:t1) (h2:t2) = h1 + h2 : sum' t1 t2
+
+prod :: [Int] -> Int
+prod l = foldl (\acc x -> acc * x) 1 l
+
+-- fatorial
+fac :: Int -> Int
+fac n = prod [2..n]
+
+-- os primeiros fatoriais - uso: take 10 ffac <--- retorna o fatorial dos 10 primeiros números
+ffac :: [Int]
+ffac = map fac [1..]
+
+equals :: Char -> Char -> Bool
+equals a b = a == b
+
+center :: String -> String
+center str
+    | length str > 2 = init (tail str)
+    | otherwise = ""
+
+evaluate :: String -> [Bool]
+evaluate "" = []
+evaluate str = equals h l : evaluate c
+    where
+        h = head str
+        l = last str
+        c = center str
+
+isPalindrome :: String -> Bool
+isPalindrome str = all (==True) (evaluate str)
