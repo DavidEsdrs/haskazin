@@ -1,0 +1,1 @@
+isPalindrome str = str == reverse str
